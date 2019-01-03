@@ -1,0 +1,270 @@
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
+#
+# It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema.define(version: 201309200000000) do
+
+  create_table "agreements", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "approved"
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.text "blurb"
+    t.date "releasedate"
+    t.integer "author_id"
+    t.string "genre"
+    t.string "fiftychar"
+    t.float "price"
+    t.string "bookpdf"
+    t.string "coverpic"
+    t.string "coverpicurl"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "user_id"
+    t.string "bookmobi"
+    t.string "bookepub"
+    t.string "bookkobo"
+    t.string "bookaudio"
+    t.text "youtube1"
+    t.text "youtube2"
+    t.string "bkvideodesc1"
+    t.string "bkvideodesc2"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "name" The event's name
+    t.datetime "start_at" Event start date
+    t.datetime "end_at" Event end date
+    t.datetime "created_at" record creation date
+    t.datetime "updated_at" record update date
+    t.text "desc" text description of event
+    t.string "address" url address of event
+    t.integer "user_id" id of event's creator
+    t.float "latitude" location tracking 
+    t.float "longitude" location tracking
+    t.integer "group1id" 
+    t.integer "group2id"
+    t.integer "group3id"
+    t.integer "usrid" id of event's creator
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "user_id"
+    t.text "about"
+    t.string "grouppic"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "grouptype"
+    t.string "permalink"
+    t.string "slug"
+    t.string "newsurl"
+    t.string "twitter"
+    t.string "facebook"
+    t.text "callaction"
+    t.string "stripeid"
+    t.string "stripe_customer_token"
+    t.datetime "stripesignup"
+    t.index ["slug"], name: "index_groups_on_slug", unique: true
+  end
+
+  create_table "merchandises", force: :cascade do |t|
+    t.string "name" merch item's name
+    t.integer "user_id" id# of user merch is associated with
+    t.float "price" self-explanatory, it's the price
+    t.text "desc" Item description
+    t.string "itempic" Picture of item
+    t.datetime "created_at" record creation
+    t.datetime "updated_at" record updated
+    t.datetime "deadline" Deadline for ordering special perks or items
+    t.float "goal" unclear, to be removed
+    t.string "youtube" linked youtube video regarding merchandise
+    t.string "audio" audio merchandise like podcasts and songs
+    t.string "video" video merchandise like movies and documetnaries
+    t.string "graphic" digital picture merchandise like photos and paintings
+    t.string "merchepub" 
+    t.string "merchmobi"
+    t.string "merchpdf" digital merchandise in pdf format, usually for books or text
+    t.datetime "expiration" same as deadline, needs deleting
+    t.integer "itempic_crop_x" sets x-value for the itempic's position
+    t.integer "itempic_crop_y" sets y-value for the itempic's position
+    t.integer "itempic_crop_w" sets width of cropped itempic
+    t.integer "itempic_crop_h" sets height of cropped itempic
+    t.string "buttontype" changes button link and text absed on if user is donating or buying something.
+  end
+
+  create_table "movieroles", force: :cascade do |t|
+    t.string "role"
+    t.string "roledesc"
+    t.integer "user_id"
+    t.integer "movie_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "title"
+    t.text "about"
+    t.string "youtube1"
+    t.string "youtube2"
+    t.string "youtube3"
+    t.string "videodesc1"
+    t.string "videodesc2"
+    t.string "videodesc3"
+    t.string "moviepic"
+    t.string "genre"
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "director"
+    t.date "releasedate"
+  end
+
+  create_table "phases", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+    t.text "mission"
+    t.string "phasepic"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "permalink"
+    t.string "slug"
+    t.datetime "deadline"
+    t.string "why_classy"
+    t.string "youtube"
+    t.index ["slug"], name: "index_phases_on_slug", unique: true
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.integer "author_id" id# of book's author
+    t.integer "book_id" id# of book
+    t.string "stripe_customer_token" 
+    t.integer "plan_id" 
+    t.datetime "created_at" 
+    t.datetime "updated_at"
+    t.string "stripe_card_token"
+    t.integer "user_id" id# of purchaser
+    t.string "bookfiletype" fieltype of book (pdf, docx, etc.)
+    t.float "pricesold" selling price of book
+    t.decimal "authorcut", precision: 8, scale: 2 dollar amount actually going to the author
+    t.date "paid" date paid
+    t.integer "merchandise_id" id# of merchandise
+    t.integer "group_id"
+    t.decimal "groupcut", precision: 8, scale: 2
+    t.string "shipaddress" customer address item is to be shipped to
+    t.string "fulfillstatus" order fulfillment status
+    t.string "email" cutomer email address
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "blurb"
+    t.integer "user_id"
+    t.integer "book_id"
+    t.integer "star"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rsvpqs", force: :cascade do |t|
+    t.integer "event_id" id# of event
+    t.integer "user_id" id# of user rsvping
+    t.integer "guests" #of guests attending event
+    t.datetime "created_at" record creation
+    t.datetime "updated_at" record updated
+    t.string "email" email address of user rsvping
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name" user's name
+    t.string "email" user's email address
+    t.text "ustreamvid" 
+    t.text "ustreamsocial"
+    t.string "twitter" user's twitter handle
+    t.string "facebook" user's facebook page
+    t.string "pinterest" user's pinterest page
+    t.string "youtube" user's youtube channel
+    t.string "genre1" content genre (like faith, suspense, fiction, etc. )
+    t.string "genre2" content genre 2
+    t.string "genre3" content genre 3
+    t.string "blogurl" user blog url address
+    t.string "profilepicurl" url for user's profile picture
+    t.string "profilepic"user's profile picture
+    t.string "author" Author name
+    t.text "about" About page/ self-made description of user page
+    t.string "password_digest" user's entered password
+    t.string "remember_token" remembering login credentials
+    t.datetime "created_at" record creation
+    t.datetime "updated_at" record updated
+    t.string "encrypted_password", default: "", null: false 
+    t.string "reset_password_token" option for password reset
+    t.datetime "reset_password_sent_at" email address for sending password reset instructions
+    t.datetime "remember_created_at" when the remember me option was set to true
+    t.integer "sign_in_count", default: 0 how many times user has logged in
+    t.datetime "current_sign_in_at" when the user logged into their current session
+    t.datetime "last_sign_in_at" the user's most recent sign in
+    t.string "current_sign_in_ip" ip address of user's current session
+    t.string "last_sign_in_ip" ip address of user's most recent session
+    t.string "permalink" link to user's profile page
+    t.string "address" user's address
+    t.float "latitude" user's latitude location
+    t.float "longitude" user's longitude location
+    t.string "slug" allows user to customize their url text
+    t.text "youtube1" text link to youtube video on user profile
+    t.text "youtube2" link to second video
+    t.text "youtube3" link to third video
+    t.string "videodesc1" text description for video
+    t.string "videodesc2" text description for video
+    t.string "videodesc3" text description for video
+    t.string "blogradio" obsolete
+    t.text "blogtalkradio" obsolete
+    t.string "stripeid" id# for stripe gem
+    t.string "stripe_customer_token" token for stripe gem
+    t.datetime "stripesignup"signup for stripe gem
+    t.string "bannerpic" user's banner picture
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["permalink"], name: "index_users_on_permalink", unique: true
+    t.index ["remember_token"], name: "index_users_on_remember_token"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["slug"], name: "index_users_on_slug", unique: true
+  end
+
+end

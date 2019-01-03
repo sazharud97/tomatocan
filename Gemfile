@@ -1,15 +1,17 @@
 source 'http://rubygems.org'
-ruby "2.4.2"
+ruby "2.5.3"
 
 gem 'listen'
 gem 'rails-controller-testing'
 
-gem 'pg'
-#gem 'sqlite3'
+# gem 'pg'
+gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby", branch: "add-gemspec"
+
+
 
 gem 'mandrill'	
 gem 'devise'
-gem 'fog'   #, '1.6.0'
+gem 'fog-aws'   #, '1.6.0'
 gem 'unf' 
 gem 'carrierwave'
 gem 'stripe'
